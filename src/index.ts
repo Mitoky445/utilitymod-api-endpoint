@@ -33,7 +33,7 @@ export default {
 
             // 4. Basic check for required fields
             if (!playerUUID || !playerName) {
-                return new Response('Missing required fields: player_uuid and player_name.', { status: 400 });
+                return new Response('Missing required fields', { status: 400 });
             }
 
             // 5. SQL INSERT Statement
@@ -58,11 +58,11 @@ export default {
             .run();
 
             if (!success) {
-                return new Response('Failed to log event to database.', { status: 500 });
+                return new Response('Failed', { status: 500 });
             }
 
             // 6. Respond success
-            return new Response('Event tracked successfully', {
+            return new Response('Success', {
                 status: 202,
                 headers: {
                     'Access-Control-Allow-Origin': '*',
