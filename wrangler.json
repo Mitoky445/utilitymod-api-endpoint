@@ -1,0 +1,16 @@
+{
+  "compatibility_date": "2025-10-08",
+  "main": "src/index.ts",
+  "name": "utilitymod-api-endpoint",
+  "upload_source_maps": true,
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_id": "16948082-a8d2-459a-8626-66adf9ecd159",
+      "database_name": "d1-utility-tracking-database"
+    }
+  ],
+  "observability": {
+    "enabled": true
+  }
+}
