@@ -2,8 +2,8 @@ interface TrackingPayload {
     license_key: string | null;
     player_uuid: string;
     player_name: string;
-    system_username: string | null;
-    system_hash: string | null;
+    system_username_hash: string | null;
+    system_hardware_hash: string | null;
 }
 
 export interface Env {
@@ -25,8 +25,8 @@ export default {
             const licenseKey = trackingData.license_key || null;
             const playerUUID = trackingData.player_uuid;
             const playerName = trackingData.player_name;
-            const systemUsername = trackingData.system_username || null;
-            const systemHash = trackingData.system_hash || null;
+            const systemUsernameHash = trackingData.system_username_hash || null;
+            const systemHardwareHash = trackingData.system_hardware_hash || null;
             
             // 3. Set the server-side timestamp
             const timestamp = new Date().toISOString();
@@ -38,13 +38,13 @@ export default {
 
             // 5. SQL INSERT Statement
             const { success } = await env.DB.prepare(
-                `INSERT INTO events (
+                `INSERT INTO logs (
                     timestamp,
                     license_key,
                     player_uuid,
                     player_name,
-                    system_username,
-                    system_hash
+                    system_username_hash,
+                    system_hardware_hash
                  ) VALUES (?, ?, ?, ?, ?, ?)`
             )
             .bind(
@@ -52,8 +52,8 @@ export default {
                 licenseKey,
                 playerUUID,
                 playerName,
-                systemUsername,
-                systemHash
+                systemUsernameHash,
+                systemHardwareHash
             )
             .run();
 
